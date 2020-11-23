@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 // 各種コンポーネント
 import Top from './components/Top.vue'
 import Mypage from './components/Mypage.vue'
-import Eventlist from './componentsEventlist.vue'
+import Eventlist from './components/Eventlist.vue'
 
 Vue.config.productionTip = false
 
