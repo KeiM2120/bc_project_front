@@ -8,6 +8,7 @@ import Eventlist from './components/Eventlist.vue'
 import Eventpage from './components/Event.vue'
 import Profile from './components/Profile.vue'
 import Attendance from './components/Attendance.vue'
+import Evaluate from './components/Evaluate.vue'
 
 Vue.config.productionTip = false
 
@@ -26,6 +27,8 @@ const router = new VueRouter({
         { path: '/profile', component: Profile },
         { path: '/attendance/:event_id', component: Attendance },
         { path: '/attendance', redirect: '/eventlist' },
+        { path: '/evaluate/:event_id/:target_id', component: Evaluate },
+
         { path: '*', redirect: '/' },
     ]
 });
