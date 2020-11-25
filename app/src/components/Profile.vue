@@ -15,7 +15,7 @@
 </style>
 
 <script>
+// 読み込み時動作として変更前の情報を取得して出すのもアリかも
 export default {
     
 }
-</script>
