@@ -26,6 +26,7 @@ const router = new VueRouter({
         { path: '/profile', component: Profile },
         { path: '/attendance/:event_id', component: Attendance },
         { path: '/attendance', redirect: '/eventlist' },
+        { path: '*', redirect: '/' },
     ]
 });
 
