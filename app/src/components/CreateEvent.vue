@@ -7,8 +7,8 @@
             開催日 <input type="date" name="eventdate"><br/>
             講師選択 :講師選択方法要検討:<br/>
             イベント説明 <input type="text" name="eventdesc"><br/>
-
         </div>
+        <button>送信</button>
     </div>
 </template>
 
