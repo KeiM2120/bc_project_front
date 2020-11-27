@@ -10,6 +10,7 @@ import Profile from './components/Profile.vue'
 import Attendance from './components/Attendance.vue'
 import Evaluate from './components/Evaluate.vue'
 import CreateEvent from './components/CreateEvent.vue'
+import ChcekEvaluate from './components/ChcekEvaluate.vue'
 
 Vue.config.productionTip = false
 
@@ -30,6 +31,7 @@ const router = new VueRouter({
         { path: '/attendance', redirect: '/eventlist' },
         { path: '/evaluate/:event_id/:target_id', component: Evaluate },
         { path: '/createevent', component: CreateEvent },
+        { path: '/checkevaluate', component: ChcekEvaluate },
 
         { path: '*', redirect: '/' },
     ]
