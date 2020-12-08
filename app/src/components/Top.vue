@@ -77,13 +77,30 @@ export default{
                         })
                     })
                     .then(response=>{
+                        // TODO: レスポンス確認して、ログインできているなら/mypageへリダイレクト
+                        // TODO: ログイン確認ができない場合は相応のエラーを返す&ページ再読み込み(リダイレクトで大丈夫そう?)
                         console.log(response)
                     })
                 }
             }
             else if (this.mode === 'signup'){
                 console.log('signup')
-                console.log('profession:'+ this.profession)
+                if(this.checkFormSignup){
+                    await fetch(this.baseUrl+ '/signin', {
+                        method: 'post',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            email: this.email,
+                            password: this.pass,
+                            name: this.name,
+                            profession: this.profession
+                        })
+                    })
+                    .then(response=>{
+                        // TODO: 新規登録が確認できたらページ再読み込みでログインページへリダイレクト
+                        console.log(response)
+                    })
+                }
             }
         },
         checkFormSignin: function (e) {
@@ -115,6 +132,9 @@ export default{
             }
             if(!this.pass){
                 this.errors.push('パスワードを入力してください')
+            }
+            if(!this.profession){
+                this.errors.push('職業を選択してください')
             }
 
             if (!this.errors.length) {
