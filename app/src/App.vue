@@ -22,6 +22,11 @@
 <script>
 export default {
   name: 'App',
+  data: function(){
+    return{
+      baseurl: 'http://hoge.jp' // ここにバックエンドのurl置いとく ** url記述したものをgitにあげない **
+    }
+  }
 }
 </script>
 
