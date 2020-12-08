@@ -9,10 +9,12 @@
             <div>
                 <ul>
                     <li v-for="event in events" v-bind:key="event.id">
+                    <router-link v-bind:to="{name: 'Event', params: { id: event.id}}">
                         {{ event.id }}<br/>
                         {{ event.name}}<br/>
                         {{ event.date }}
                         <!-- イベント詳細へのリンクもつける -->
+                    </router-link>
                     </li>
                 </ul>
             </div>
