@@ -10,3 +10,10 @@ services:
     tty: true
     stdin_open: true
     command: /bin/sh
+    networks:
+      - backend
+
+# バックエンドとの接続テスト用
+networks:
+  backend:
+    external: true

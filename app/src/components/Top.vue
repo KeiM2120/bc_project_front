@@ -36,7 +36,7 @@ export default{
     name: 'signin',
     data: ()=>{
         return {
-        baseUrl: 'hoge.com:3000',
+        baseUrl: 'http://localhost:3000',
         mode: "signin",
         status: "ログイン",
         toggleMode: "新規登録",
