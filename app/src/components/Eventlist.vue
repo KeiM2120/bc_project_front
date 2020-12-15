@@ -11,8 +11,8 @@
                     <li v-for="event in events" v-bind:key="event.id">
                     <router-link v-bind:to="{name: 'Event', params: { id: event.id}}">
                         {{ event.id }}<br/>
-                        {{ event.name}}<br/>
-                        {{ event.date }}
+                        {{ event.event_name}}<br/>
+                        {{ event.start_day }}
                         <!-- イベント詳細へのリンクもつける -->
                     </router-link>
                     </li>
@@ -31,11 +31,14 @@ export default {
     data: ()=>{
         return{
             events: [
-                {id: "001",name: "イベントA", date: "2020/11/11"},
-                {id: "003",name: "イベントB", date: "2020/11/22"},
-                {id: "005",name: "イベントC", date: "2020/12/01"},
+                // {id: "001",name: "イベントA", date: "2020/11/11"},
+                // {id: "003",name: "イベントB", date: "2020/11/22"},
+                // {id: "005",name: "イベントC", date: "2020/12/01"},
                 ]
         }
+    },
+    created: async function(){ //作成時にバックからイベント一覧の取得
+        this.events = await fetch('/api/eventall').then(response=>response.json())
     }
 }
 </script>
