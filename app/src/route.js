@@ -19,12 +19,13 @@ Vue.use(VueRouter)
 
 // ルーティング定義
 const router = new VueRouter({
+    mode: 'history',
     routes: [
         // $BASE_URL$/のときはIndexコンポーネントを呼び出す
         { path: '/', component: Top },
         { path: '/mypage', component: Mypage },
         { path: '/eventlist', component: Eventlist },
-        { path: '/event/:id', component: Eventpage, name:'Event' },
+        { path: '/event/:id', component: Eventpage, name: 'Event' },
         { path: '/event', redirect: '/eventlist' },
         { path: '/profile', component: Profile },
         { path: '/attendance/:event_id', component: Attendance },

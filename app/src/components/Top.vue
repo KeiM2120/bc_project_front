@@ -36,7 +36,7 @@ export default{
     name: 'signin',
     data: ()=>{
         return {
-        baseUrl: 'http://localhost:3000',
+        baseUrl: 'http://localhost/api',
         mode: "signin",
         status: "ログイン",
         toggleMode: "新規登録",
@@ -80,19 +80,22 @@ export default{
                         // TODO: レスポンス確認して、ログインできているなら/mypageへリダイレクト
                         // TODO: ログイン確認ができない場合は相応のエラーを返す&ページ再読み込み(リダイレクトで大丈夫そう?)
                         console.log(response)
+                        if(response.status === 200){
+                            this.$router.go('/mypage')
+                        }
                     })
                 }
             }
             else if (this.mode === 'signup'){
                 console.log('signup')
                 if(this.checkFormSignup){
-                    await fetch(this.baseUrl+ '/signin', {
+                    await fetch(this.baseUrl+ '/signup', {
                         method: 'post',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
                             email: this.email,
                             password: this.pass,
-                            name: this.name,
+                            user_name: this.name,
                             profession: this.profession
                         })
                     })

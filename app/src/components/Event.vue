@@ -25,13 +25,16 @@ export default {
     data: ()=> {
         return{
             details: {
-                id: "001",
-                name: "イベントA",
-                date: "2020/11/11",
-                teacher: "近大 弘一",
-                desc: "本イベントは〇〇をして△△を目指すものになります。"
+                // id: "001",
+                // name: "イベントA",
+                // date: "2020/11/11",
+                // teacher: "近大 弘一",
+                // desc: "本イベントは〇〇をして△△を目指すものになります。"
             }
         }
+    },
+    created: async function(){ 
+        this.details = await fetch('/api/eventpage?event_id='+this.$route.params.id).then(response=>response.json())    
     }
 }
 </script>
