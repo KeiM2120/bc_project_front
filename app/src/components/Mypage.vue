@@ -30,6 +30,7 @@ export default{
     name: 'mypage',
     data: ()=>{
         return{
+            userData: {},
             username: "ユーザ名",
             occupation: "学生",
             events: [
@@ -38,6 +39,18 @@ export default{
                 {id: "005",name: "イベントC", date: "2020/12/01"},
                 ]
         }
+    },
+    created: async ()=>{
+        await fetch('/api/mypage')
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data)
+        })
+        .catch((e)=> {
+            console.log(e)
+            location.href='/'
+            }
+        )
     }
 }
 </script>
