@@ -79,10 +79,15 @@ export default{
                     .then(response=>{
                         // TODO: レスポンス確認して、ログインできているなら/mypageへリダイレクト
                         // TODO: ログイン確認ができない場合は相応のエラーを返す&ページ再読み込み(リダイレクトで大丈夫そう?)
-                        console.log(response)
-                        if(response.status === 200){
-                            this.$router.go('/mypage')
+                            
+                        if(response.ok){
+                            location.href='/mypage'
+                        } 
+                        else{
+                            alert('サインイン中にエラーが発生しました。')
+                            location.href='/'
                         }
+                        // console.log(response)
                     })
                 }
             }
@@ -100,8 +105,13 @@ export default{
                         })
                     })
                     .then(response=>{
-                        // TODO: 新規登録が確認できたらページ再読み込みでログインページへリダイレクト
-                        console.log(response)
+                        if(response.ok){
+                            location.href='/'
+                        } 
+                        else{
+                            alert('サインアップ中にエラーが発生しました。')
+                        }
+                        // console.log(response)
                     })
                 }
             }
