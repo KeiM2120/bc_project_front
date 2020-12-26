@@ -20,8 +20,24 @@
             <div>
                 <h6>自由軸評価</h6>
                 <ul>
-                    <li v-for="(k,v) in freeEval" v-bind:key="k">
+                    <li v-for="(v, k) in freeEval" v-bind:key="k">
                         {{ k }} : {{ v }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h4>参加予定のイベント</h4>
+            <div>
+                <ul>
+                    <li v-for="event in userData.eventlist" v-bind:key="event.id">
+                        
+                        <router-link v-bind:to="{name:'Event', params:{id: event.id}}">
+                            <div>
+                                {{ event.event_name }}<br/>
+                                開催: {{event.start_day}}
+                            </div>
+                        </router-link>
                     </li>
                 </ul>
             </div>
