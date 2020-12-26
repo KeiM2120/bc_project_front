@@ -17,6 +17,14 @@
                     <li>チームで働く力: {{ avgTeam }}</li>
                 </ul>
             </div>
+            <div>
+                <h6>自由軸評価</h6>
+                <ul>
+                    <li v-for="(k,v) in freeEval" v-bind:key="k">
+                        {{ k }} : {{ v }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- <div>
@@ -52,6 +60,7 @@ export default{
                 ]
         }
     },
+    // createdにてユーザ情報をfetchで取得
     created: function(){
         let self= this;
         fetch('/api/mypage')
@@ -61,6 +70,7 @@ export default{
             self.userData= jData
         })
     },
+    // 評価はここで学生評価と講師評価の平均を算出
     computed: {
         avgAct: function(){
             return ( this.userData.ts[0].action+ this.userData.ss[0].action)/2
@@ -70,6 +80,14 @@ export default{
         },
         avgTeam: function(){
             return ( this.userData.ts[2].team+ this.userData.ss[2].team)/2
+        },
+        // 自由軸評価が12種の前提
+        freeEval: function(){ 
+            let total={};
+            for(let i= 0; i< 12; i++){
+                total[this.userData.social[i].name]= (this.userData.social[i].count+ this.userData.social2[i].count);
+            }
+            return total;
         }
     }
 }
