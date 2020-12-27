@@ -11,6 +11,20 @@
         </div>
         <div>
             DEBUG:mode: {{ mode }}
+            <div v-if="mode == 0">
+                このイベントに <button @click="attendEvent">参加する!</button>
+            </div>
+            <div v-else-if="mode == 1">
+                本イベントは実施期間などの理由により参加できません
+            </div>
+            <div v-else-if="mode == 2">
+                あなたは本イベントの参加者です<br/>
+                <button @click="checkAttendees">参加者を確認する</button>
+            </div>
+            <div v-else-if="mode == 3">
+                本イベントは開催終了しております<br/>
+                <button @click="checkEvaluation">自身の評価を確認する</button>
+            </div>
         </div>
     </div>
     <!-- 参加ボタンどうしよう -->
@@ -27,6 +41,33 @@ export default {
         return{
             details: {},
             mode: -1,
+        }
+    },
+    methods: {
+        attendEvent: async function(){
+            await fetch('/api/eventpage',
+            {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({event_id:this.$route.params.id})
+                })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status == 200){
+                    alert('イベント参加登録が完了しました')
+                    location.reload(true);
+                }
+                else{
+                    alert('ERROR [STATUS: '+ data.status+ '] イベント一覧ページに戻ります')
+                    location.href= '/eventlist';
+                }
+            })
+        },
+        checkAttendees: function(){
+            alert('本機能は未実装です')
+        },
+        checkEvaluation: function(){
+            alert('本機能は未実装です')
         }
     },
     created: async function(){ 
