@@ -6,10 +6,10 @@
                 <h2> {{ status }} </h2>
             </div>
             <div>
-                ユーザID(メールアドレス)<input type="text" v-model="email" placeholder="user_id">
+                ユーザID(メールアドレス)<input type="text" v-model="email" placeholder="user_id" @keydown.enter="trigger_submit">
             </div>
             <div>
-                パスワード<input type="text" v-model="pass" placeholder="password">
+                パスワード<input type="password" v-model="pass" placeholder="password" @keydown.enter="trigger_submit">
             </div>
             <div v-if="mode === 'signup'">
                 氏名<input type="text" v-model="name" placeholder="name"><br/>
@@ -159,6 +159,10 @@ export default{
         validEmail: function (email) {
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
+        },
+        trigger_submit: (event)=>{
+            if(event.keyCode !== 13)return
+            this.submitData;
         },
     },
     created: () => {
