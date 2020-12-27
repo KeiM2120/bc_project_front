@@ -64,7 +64,7 @@ export default {
             })
         },
         checkAttendees: function(){
-            alert('本機能は未実装です')
+            location.href= '/attendance/'+ this.$route.params.id
         },
         checkEvaluation: function(){
             alert('本機能は未実装です')
