@@ -36,7 +36,6 @@ export default{
     name: 'signin',
     data: ()=>{
         return {
-        baseUrl: 'http://localhost/api',
         mode: "signin",
         status: "ログイン",
         toggleMode: "新規登録",
@@ -68,7 +67,7 @@ export default{
             if(this.mode === "signin"){
                 console.log('signin')
                 if(this.checkFormSignin){
-                    await fetch(this.baseUrl+'/signin', {
+                    await fetch('/api/signin', {
                         method: 'post',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -94,7 +93,7 @@ export default{
             else if (this.mode === 'signup'){
                 console.log('signup')
                 if(this.checkFormSignup){
-                    await fetch(this.baseUrl+ '/signup', {
+                    await fetch('/api/signup', {
                         method: 'post',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
