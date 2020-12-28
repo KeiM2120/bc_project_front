@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         evaluateUser: function(user_id){
-            alert('called evalueteUser user_id:'+ user_id)
+            location.href='/evaluate/'+ this.$route.params.event_id+ '/'+ user_id
         }
     },
     created: async function(){
