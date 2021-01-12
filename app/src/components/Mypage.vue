@@ -42,6 +42,10 @@
                 </ul>
             </div>
         </div>
+        <div v-if="userData.profession == 'school'">
+            <a href="createevent">イベント新規作成</a><br/>
+        </div>
+        <a href="/eventlist">イベント一覧</a><br/>
 
         <!-- <div>
             参加イベント
