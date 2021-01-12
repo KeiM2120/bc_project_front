@@ -7,18 +7,26 @@
         
         <h2>評価確認</h2>
         <div id="evaluation">
-            <div id="fixed_axis">
-                固定軸評価
+            <div>
+            <h3>イベント名: {{ evaluation.eventlist[0].event_name }} </h3>
+            <h4>評価</h4>
+            <div>
+                <h6>固定軸評価</h6>
                 <ul>
-                    <li>アクション力 {{ evaluation.act }} </li>
-                    <li>思考力 {{ evaluation.think }}</li>
-                    <li>チーム力 {{ evaluation.team }} </li>
+                    <li>前に踏み出す力: {{ avgAct }}</li>
+                    <li>考え抜く力: {{ avgThink }}</li>
+                    <li>チームで働く力: {{ avgTeam }}</li>
                 </ul>
             </div>
-            <div id="free_axis">
-                自由軸評価
-                <!-- 自由軸評価の出力方法も考えなきゃ -->
+            <div>
+                <h6>自由軸評価</h6>
+                <ul>
+                    <li v-for="(v, k) in freeEval" v-bind:key="k">
+                        {{ k }} : {{ v }}
+                    </li>
+                </ul>
             </div>
+        </div>
         </div>
     </div>
 </template>
@@ -35,25 +43,37 @@ export default {
         return{
             mode: '',
             name: 'イベント名 or ユーザ名',
-            evaluation: {
-                act: 5,
-                think: 3,
-                team: 4,
-                // 自由軸評価も
-                comments: [
-                    'ここがすごい',
-                    'あれがよかった',
-                    'リードしてくれた',
-                ]
-            },
+            evaluation: {},
             
         }
     },
-    created: function(){
-        if(!this.$route.path.indexOf('/checkevaluate/u/')){this.mode= 'u'}
-        else if (!this.$route.path.indexOf('/checkevaluate/e/')){this.mode= 'e'}
+    created: async function(){
+        let m= this.$route.params.mode
+        if( m === 'u'){this.mode= m}
+        else if ( m === 'e'){this.mode= m}
+        else {location.href= '/mypage'}
 
+        let edata=  await fetch('/api/eConfirmation?event_id='+ this.$route.params.id).then(response=>response.json())
+        this.evaluation= edata
+    },
+    computed: {
+        avgAct: function(){
+            return ( this.evaluation.ts[0].action+ this.evaluation.ss[0].action)/2
+        },
+        avgThink: function(){
+            return ( this.evaluation.ts[1].think + this.evaluation.ss[1].think)/2
+        },
+        avgTeam: function(){
+            return ( this.evaluation.ts[2].team+ this.evaluation.ss[2].team)/2
+        },
+        // 自由軸評価が12種の前提
+        freeEval: function(){ 
+            let total={};
+            for(let i= 0; i< 12; i++){
+                total[this.evaluation.social[i].name]= (this.evaluation.social[i].count+ this.evaluation.social2[i].count);
+            }
+            return total;
+        }
     }
-    
 }
 </script>

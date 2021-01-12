@@ -32,8 +32,7 @@ const router = new VueRouter({
         { path: '/attendance', redirect: '/eventlist' },
         { path: '/evaluate/:event_id/:target_id', component: Evaluate },
         { path: '/createevent', component: CreateEvent },
-        { path: '/checkevaluate/e/:id', component: CheckEvaluate },
-        { path: '/checkevaluate/u/:id', component: CheckEvaluate },
+        { path: '/checkevaluate/:mode/:id', component: CheckEvaluate },
 
         { path: '*', redirect: '/' },
     ]
