@@ -7,7 +7,7 @@
             <div>職業 {{ userData.profession }}</div>
         </div>
         
-        <div>
+        <div v-if="userData.profession == 'student'">
             <h4>評価</h4>
             <div>
                 <h6>固定軸評価</h6>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
         </div>
-        <div>
+        <div v-if="!(userData.profession == 'school')">
             <h4>参加予定のイベント</h4>
             <div>
                 <ul>
@@ -89,12 +89,15 @@ export default{
     // 評価はここで学生評価と講師評価の平均を算出
     computed: {
         avgAct: function(){
+            if(this.userData.ts === undefined){return -1}
             return ( this.userData.ts[0].action+ this.userData.ss[0].action)/2
         },
         avgThink: function(){
+            if(this.userData.ts === undefined){return -1}
             return ( this.userData.ts[1].think + this.userData.ss[1].think)/2
         },
         avgTeam: function(){
+            if(this.userData.ts === undefined){return -1}
             return ( this.userData.ts[2].team+ this.userData.ss[2].team)/2
         },
         // 自由軸評価が12種の前提
