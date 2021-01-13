@@ -25,6 +25,9 @@
                     </li>
                 </ul>
             </div>
+            <div>
+                <a v-bind:href="'/checkevaluate/u/'+userData.email">自身の評価を共有</a>
+            </div>
         </div>
         <div v-if="!(userData.profession == 'school')">
             <h4>参加予定のイベント</h4>
