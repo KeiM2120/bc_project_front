@@ -46,6 +46,15 @@
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <h6>参加したイベント</h6>
+                    <ul>
+                        <li v-for="event in evaluation.eventlist" v-bind:key="event.id">
+                            {{ event.event_name }}<br/>
+                            {{ event.start_day }} 開催
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
