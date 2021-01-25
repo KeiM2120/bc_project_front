@@ -6,7 +6,7 @@
         </div>
         <div id="list">
             イベント一覧 <br/>
-            <div>
+            <div v-if="events">
                 <ul>
                     <li v-for="event in events" v-bind:key="event.id">
                     <router-link v-bind:to="{name: 'Event', params: { id: event.id}}">
@@ -38,7 +38,10 @@ export default {
         }
     },
     created: async function(){ //作成時にバックからイベント一覧の取得
-        this.events = await fetch('/api/eventall').then(response=>response.json())
+        let resData = await fetch('/api/eventall').then(response=>response.json())
+        resData.eventlist.forEach(e =>{
+            this.events.push(e);
+        })
     }
 }
 </script>
